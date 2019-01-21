@@ -6,11 +6,11 @@ require 'city-state/version'
 Gem::Specification.new do |spec|
   spec.name          = "city-state"
   spec.version       = CS::VERSION
-  spec.authors       = ["Daniel Loureiro"]
-  spec.email         = ["loureirorg@gmail.com"]
+  spec.authors       = ["Mohamad Al Haj Rahmoun"]
+  spec.email         = ["mrahmoun93@gmail.com"]
   spec.summary       = %q{Simple list of cities and states of the world}
   spec.description   = %q{Useful to make forms and validations. It uses MaxMind database.}
-  spec.homepage      = "https://github.com/loureirorg/city-state"
+  spec.homepage      = "https://github.com/mhdrahmoun/city-state"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

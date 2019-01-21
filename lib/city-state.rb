@@ -10,6 +10,14 @@ module CS
   @countries, @states, @cities = [{}, {}, {}]
   @current_country = nil # :US, :BR, :GB, :JP, ...
 
+  def self.logger
+    @@logger ||= defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+  end
+
+  def self.logger=(logger)
+    @@logger = logger
+  end
+
   def self.update_maxmind
     require "open-uri"
     require "zip"
@@ -73,6 +81,7 @@ module CS
       # some state codes are empty: we'll use "states-replace" in these cases
       rec[STATE] = states_replace_inv[rec[STATE_LONG]] if rec[STATE].blank?
       rec[STATE] = rec[STATE_LONG] if rec[STATE].blank? # there's no correspondent in states-replace: we'll use the long name as code
+      rec[STATE_LONG] = states_replace[rec[STATE].to_sym] if states_replace[rec[STATE].to_sym].present?
 
       # some long names are empty: we'll use "states-replace" to get the code
       rec[STATE_LONG] = states_replace[rec[STATE]] if rec[STATE_LONG].blank?
